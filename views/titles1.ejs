@@ -6,10 +6,22 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 <link href="/css/index.css" rel="stylesheet" type="text/css">
 
+
 </head>
  <% include partials/nav.ejs %>
 <body>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+      
+   $(".delete-form").on('click', function(e){
+    e.preventDefault();
+    var el = $(e.currentTarget);
+    el.parents('form').remove();
+});
+
+    </script>
+
 <center><h2>My Pins</h2></center>
+
 
 
 <form action="/photos" method="post">
@@ -22,19 +34,18 @@
 </form>
 
 
-
 </body>
-</html>
+
 <% data.forEach(function(user) { %>
 
  <form action="/sub" method="post">
-<div class="wrap">
- 
+<div class="wrap"> 
      
     <div class="layer1"> <img src=" <%= user.photos %>" alt="some_text" height="90" width="90"> </img> </div>     
-     <div class="layer3"><input type="radio" id="rd3" name="public" value="<%= user.photos %>" required >Public </div>      
-     <div class="layer4"><input name="write" type="text" value="<%= user.write %>" placeholder="write sth"  maxlength="12" ></div>
-        <input type="submit" value="PIN IT!" >
+    <div class="layer3"><input type="radio" id="rd3" name="public" value="<%= user.photos %>" >Public </div>          
+    <div class="layer4"><input name="write" type="text" value="<%= user.write %>" placeholder="write sth"  maxlength="12" ></div>
+    <input type="submit" value="PIN IT!" > <input type="button" value="Delete" class="delete-form">
+    
   
 </div>
 </form>
@@ -44,3 +55,4 @@
 
 <% include partials/footer.ejs %>
 
+</html>

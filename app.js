@@ -11,13 +11,12 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var routes = require('./routes');
 var session = require("express-session");
-var passport = require('passport');
 var flash    = require('connect-flash');
 var morgan = require('morgan');
 var Name = require("./models/name");
 
 
-mongoose.connect("mongodb://localhost/pinterest10", function (error){
+mongoose.connect("mongodb://ha:123@ds145415.mlab.com:45415/pinterest123", function (error){
    
    if (error) console.error(error);
    else console.log("mongo connected")

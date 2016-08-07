@@ -33,6 +33,7 @@ module.exports = function(app, passport) {
         var public= req.body.public;
         var write = req.body.write;
 
+
         var p= new Public({public:public,write:write}); 
      
         p.save(function(err,names) {
@@ -44,18 +45,21 @@ module.exports = function(app, passport) {
       });        
     });
 
-//delete
+    
+
+    
+
      //submit to my profile
     app.post("/photos",isLoggedIn, function(req, res, next) {
         
-        var photos = req.body.photos;
+        var photos = req.body.photos;        
         var skase = req.user.google.name;
 
         var n= new Name({photos:photos, skase:skase }); 
      
         n.save(function(err,names) {
 
-         console.log(names);
+         console.log(names);         
 
          res.redirect('/profile/names'); 
 
@@ -63,22 +67,42 @@ module.exports = function(app, passport) {
     });
 
 
-   app.get("/profile/names",isLoggedIn, function(req, res) {
+    app.get("/profile/names",isLoggedIn, function(req, res) {
 
-         var photos = req.params.photos;
+        var photos = req.params.photos;
          var names = req.params.names;
          var skase = req.params.skase;              
          
+        console.log(names);
+
+        Name.find({ skase:req.user.google.name, names:names
+       }, function(err, data) {
+          if (err) { return next(err); }
+          
+          res.render("titles1", { data: data});
+           });
+         });  
+
+       //delete
+     app.get("/profile/names",isLoggedIn, function(req, res) {
+
+         var delet = req.params.delet;
+          var names = req.params.names;             
+         
        console.log(names);
 
-       Name.find({ skase:req.user.google.name, names:names
-      }, function(err, data) {
-         if (err) { return next(err); }
-          
-           res.render("titles1", { data: data});
-          });
-        });        
+       Name.find({ delet:delet
+      }, function(err,data) {
+        if (err) throw err;
 
+  // delete him
+       Name.remove(function(err) {
+    if (err) throw err;
+
+    console.log('User successfully deleted!');
+    res.render("titles1", { data: data});
+     });
+ });});
 
 
    //Authentication
@@ -98,6 +122,7 @@ module.exports = function(app, passport) {
         req.logout();
         res.redirect('/');
     });
+
 
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 
@@ -121,4 +146,3 @@ module.exports = function(app, passport) {
         res.redirect('/');
      }
  
-

@@ -2,7 +2,8 @@ var mongoose = require("mongoose");
 
 var publicSchema = mongoose.Schema({
  public: { type: String },
- write: { type: String }
+ write: { type: String },
+ delet:{type:String}
   
 });
 
