@@ -16,7 +16,7 @@ var morgan = require('morgan');
 var Name = require("./models/name");
 
 
-mongoose.connect("mongodb://ha:123@ds145415.mlab.com:45415/pinterest123", function (error){
+mongoose.connect("mongodb://", function (error){
    
    if (error) console.error(error);
    else console.log("mongo connected")
