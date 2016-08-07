@@ -4,8 +4,8 @@
 module.exports = {
 
         'googleAuth' : {
-        'clientID'      : '603682516969-5u0p2h5j29li9lhhjirflfn9me34vfpl.apps.googleusercontent.com',
-        'clientSecret'  : 'Gm2bJfCO-IMKB8R8H4aWdxj2',
+        'clientID'      : '603682516969-vgfdciapqpc0mjvv49enjhngsv1rr9gu.apps.googleusercontent.com',
+        'clientSecret'  : 'QRtuE6IYIG7MC-FFqEpNi1_U',
         'callbackURL'   : 'https://pinterest123.herokuapp.com/auth/google/callback'
     }
 
