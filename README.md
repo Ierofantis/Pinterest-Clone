@@ -16,7 +16,7 @@ User Story: As an unauthenticated user, I can browse other users' walls of image
 
 User Story: As an authenticated user, if I upload an image that is broken, it will be replaced by a placeholder image. (can use jQuery broken image detection)
  
- #Tools/Backend
+#Tools/Backend
  
  NodeJS/ExpressJs,MongoDB/Mongoose,mlab,git,heroku
 
